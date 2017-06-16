@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<script src="bootstrap/js/jquery.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default navbar-inverse" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">泽瑞科技OA</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li id="nn1">
+							<a href="javascript:changeNav2('prize',1)">奖品管理</a>
+						</li>
+						<li id="nn2" class="active">
+							<a href="javascript:changeNav2('prize',2)">二维码管理</a>
+						</li>
+						<li id="nn3">
+							<a href="javascript:changeNav2('prize',3)">用户管理</a>
+						</li>
+					</ul>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#"><span class="glyphicon glyphicon-user"></span> 修改密码</a>
+					</li>
+					<li>
+						<a href="#"><span class="glyphicon glyphicon-log-in"></span> 退出</a>
+					</li>
+				</ul>
+			</div>
+			<ol class="nav nav-tabs nav-justified" id="nt">
+
+			</ol>
+
+		</nav>
+		<iframe id="iframe" src="prizeManager" style="width: 100%;margin-top: -20px;" frameborder="0" scrolling="no" onload="this.height=100"></iframe>
+
+	</body>
+
+	<script type="text/javascript" src="js/index.js"></script>
+
+</html>
