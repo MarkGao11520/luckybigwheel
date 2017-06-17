@@ -5,26 +5,15 @@ package com.zrkj.pojo;
  */
 public class Prize {
     private Integer id;
-    private byte isdel;
+    private Byte isdel;
     private String prizeName;
     private Double prizeRate;
     private String prizePic;
-    private byte isUse;
+    private Byte isUse;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public byte getIsdel() {
+    public Byte getIsdel() {
         return isdel;
-    }
-
-    public void setIsdel(byte isdel) {
-        this.isdel = isdel;
     }
 
     public String getPrizeName() {
@@ -51,11 +40,23 @@ public class Prize {
         this.prizePic = prizePic;
     }
 
-    public byte getIsUse() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setIsdel(Byte isdel) {
+        this.isdel = isdel;
+    }
+
+    public Byte getIsUse() {
         return isUse;
     }
 
-    public void setIsUse(byte isUse) {
+    public void setIsUse(Byte isUse) {
         this.isUse = isUse;
     }
 }

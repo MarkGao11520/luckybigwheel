@@ -40,7 +40,7 @@ function reinitIframe() {
 		var bodyHight = document.documentElement.clientHeight;
 		var bottomHight = document.getElementById("bnav").offsetHeight;
 		iframe.style.marginTop = navHight+'px';
-		// iframe.style.marginBottom = bottomHight+'px';
+		iframe.style.marginBottom = bottomHight+'px';
 		// var bHeight = iframe.contentWindow.document.body.scrollHeight;
 		// var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
 		// var height = Math.max(bHeight, dHeight);

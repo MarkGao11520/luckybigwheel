@@ -23,6 +23,15 @@ public interface PrizeMapper {
     @Select("select * from tb_prize")
     List<Prize> getPrizeList();
 
+    @Select("select * from tb_prize where isUse = 0")
+    List<Prize> getPrizeListInUse();
+
+    @Select("select prizeRate from tb_prize where isUse = 0")
+    List<Double> getRateList();
+
+    @Select("select count(id) from tb_prize where isUse = 0")
+    int getUseNum();
+
     @Insert("<script>insert into tb_prize(prizeName<if test=\"prizeRate!=null\">,prizeRate</if><if test=\"prizePic!=null\">,prizePic</if>)" +
             "values(#{prizeName}<if test=\"prizeRate!=null\">,#{prizeRate}</if><if test=\"prizePic!=null\">,#{prizePic}</if>)</script>")
     @Options(useGeneratedKeys = true)

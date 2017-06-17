@@ -14,6 +14,10 @@ public interface IPrizeService {
 
     List<Prize> obtainPrizeList();
 
+    Map<String,Object> obtainPrizeListInUse();
+
+    Map<String,Object> obtainUseNum();
+
     Map<String,Object> doCreatePrize(Prize prize);
 
     Map<String,Object> doUpdatePrize(Prize prize);

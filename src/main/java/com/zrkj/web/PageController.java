@@ -37,6 +37,16 @@ public class PageController {
         return iPrizeService.obtainPrizeList();
     }
 
+    @RequestMapping("getPrizeListInUse")
+    public Map<String,Object>  getPrizeListInUse(){
+        return iPrizeService.obtainPrizeListInUse();
+    }
+
+    @RequestMapping("getUseNum")
+    public Map<String,Object> getUseNum(){
+        return iPrizeService.obtainUseNum();
+    }
+
     @RequestMapping("addPrize")
     public Map<String,Object> addPrize(Prize prize){
         return iPrizeService.doCreatePrize(prize);
@@ -45,6 +55,11 @@ public class PageController {
     @RequestMapping("updatePrzie")
     public Map<String,Object> updatePrzie(Prize prize){
         return iPrizeService.doUpdatePrize(prize);
+    }
+
+    @RequestMapping("updateUser")
+    public Map<String,Object> updateUser(User user){
+        return iUserService.doUpdatePrize(user);
     }
 
     @RequestMapping("uploadPrizeImage")
