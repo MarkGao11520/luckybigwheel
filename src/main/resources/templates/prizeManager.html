@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="table/bootstrap-table.min.css"/>
-    <link rel="stylesheet" href="css/activiti_prodef.css"/>
+    <link rel="stylesheet" href="css/prizeMananger.css"/>
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="table/bootstrap-table.min.js"></script>
@@ -23,7 +23,7 @@
     <form class="form-inline"  style="float: left;"  id="queryForm">
 
         <div class="form-group">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openDesignPanel()"><button type="button" class="btn btn-warning">添加奖品</button></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openDesignPanel(true)"><button type="button" class="btn btn-warning">添加奖品</button></a>
         </div>
 
     </form>
@@ -39,7 +39,7 @@
      class="panel panel-warning">
     <div class="panel-heading">
         <h3 class="panel-title">设计表单</h3>
-        <a class="a_close" href="javascript:closeDesignPanel()"></a>
+        <a class="a_close" href="javascript:closeDesignPanel()"><span style="float: right;margin-top: -1.5%;" class="glyphicon glyphicon-remove"></span></a>
     </div>
     <div class="panel-body">
         <form class="bs-example bs-example-form" role="form">
@@ -60,7 +60,7 @@
             <!--<input type="text" id="prizeRate" class="form-control" placeholder="twitterhandle">-->
         <!--</div>-->
         </form>
-        <button class="btn btn-warning btn-block" style="width: 25%;margin: 0 auto;" onclick="designSubmit()">提交
+        <button class="btn btn-warning btn-block" style="width: 25%;margin: 0 auto;" id="desigenSumbit" onclick="designSubmit()">提交
         </button>
     </div>
 </div>

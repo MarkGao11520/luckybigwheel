@@ -67,7 +67,7 @@ $('#table').bootstrapTable({
 			sortable: true,
 			formatter: function(value, row, index) {
 				var str = '';
-				str += '<button class="btn btn-warning" onclick="openDesignPanel()">编辑</button>&nbsp;&nbsp;';
+				str += '<button class="btn btn-warning" onclick="openDesignPanel('+false+','+row.id+',\''+row.prizeName+'\''+',\''+row.prizeRate+'\''+')">编辑</button>&nbsp;&nbsp;';
                 if(row.isUse==1){
                     str +='<button onclick="updateIsUse('+row.id+','+0+')" class="btn btn-warning">启用</button>';
                 }else{
@@ -120,8 +120,16 @@ function closeDesignPanel() {
 	$('#prizeRate').val("");
 }
 
-function openDesignPanel() {
-	$('#desginPanel').show();
+function openDesignPanel(isAdd,id,name,rate) {
+	if(isAdd){
+        $('#desigenSumbit').attr('onclick','add()');
+	}
+	else {
+		$('#prizeName').val(name);
+		$('#prizeRate').val(rate);
+        $('#desigenSumbit').attr('onclick','update('+id+')');
+    }
+    $('#desginPanel').show();
 }
 
 function check() {
@@ -139,7 +147,7 @@ function check() {
 	}
 }
 
-function designSubmit() {
+function add() {
     if(check()){
         $.ajax({
             type:'post',
@@ -157,6 +165,29 @@ function designSubmit() {
                     alert("该奖品已经存在");
                 }else {
                     alert("添加失败");
+                }
+            }
+        })
+    }
+}
+
+function update(id) {
+    if(check()){
+        $.ajax({
+            type:'post',
+            url:'./pageController/updatePrzie',
+            data:{
+                id:id,
+                prizeName:$('#prizeName').val(),
+                prizeRate:$('#prizeRate').val()
+            },
+            success:function (result) {
+                if(result.result==1){
+                    alert("编辑成功");
+                    $('#table').bootstrapTable('refresh');    //刷新表格
+                    closeDesignPanel();
+                }else {
+                    alert("编辑失败");
                 }
             }
         })

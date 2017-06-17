@@ -1,0 +1,35 @@
+.cdel {
+	float: right;
+	overflow: hidden;
+	margin-top: 10px;
+	height: 25px;
+}
+
+.casewinright {
+	overflow: hidden;
+	padding: 0px 10px;
+	width: 750px;
+}
+
+.winright {
+	clear: both;
+	width: 750px;
+}
+
+#bgDiv {
+	width: 100%;
+	height: 100%;
+	display: none
+}
+
+#imgBig {
+	display: none;
+}
+
+.a_close{
+	color: #8e8e8e;
+}
+
+.a_close:hover{
+	color: black;
+}
