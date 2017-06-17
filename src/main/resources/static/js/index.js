@@ -36,11 +36,15 @@ function changeNav2(url, id) {
 function reinitIframe() {
 	var iframe = document.getElementById("iframe");
 	try {
-		var bHeight = iframe.contentWindow.document.body.scrollHeight;
-		var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-		var height = Math.max(bHeight, dHeight);
-		iframe.height = height;
-		console.log(height);
+		var navHight = document.getElementById("nav").offsetHeight;
+		var bodyHight = document.documentElement.clientHeight;
+		var bottomHight = document.getElementById("bnav").offsetHeight;
+		iframe.style.marginTop = navHight+'px';
+		// iframe.style.marginBottom = bottomHight+'px';
+		// var bHeight = iframe.contentWindow.document.body.scrollHeight;
+		// var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+		// var height = Math.max(bHeight, dHeight);
+		iframe.height = bodyHight-navHight-bottomHight;
 	} catch(ex) {}
 }
 window.setInterval("reinitIframe()", 200);

@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default navbar-inverse" role="navigation">
+		<nav id="nav" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">泽瑞科技OA</a>
@@ -31,7 +31,7 @@
 							<a href="javascript:changeNav2('prize',2)">二维码管理</a>
 						</li>
 						<li id="nn3">
-							<a href="javascript:changeNav2('prize',3)">用户管理</a>
+							<a href="javascript:changeNav2('user',3)">用户管理</a>
 						</li>
 					</ul>
 				</div>
@@ -49,8 +49,16 @@
 			</ol>
 
 		</nav>
-		<iframe id="iframe" src="prizeManager" style="width: 100%;margin-top: -20px;" frameborder="0" scrolling="no" onload="this.height=100"></iframe>
+		<iframe id="iframe" src="prizeManager" style="width: 100%;" frameborder="0" scrolling="no"  onload="this.height=100"></iframe>
 
+		<nav class="navbar navbar-default navbar-inverse navbar-fixed-bottom" id="bnav" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a  style="margin: 0 auto"  class="navbar-brand" href="#">©版权所有天津泽瑞科技有限公司
+						津ICP备16006638号</a>
+				</div>
+			</div>
+		</nav>
 	</body>
 
 	<script type="text/javascript" src="js/index.js"></script>

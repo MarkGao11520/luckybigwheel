@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="table/bootstrap-table.min.css"/>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="table/extensions/export/bootstrap-table-export.min.js"></script>
+
+</head>
+
+<body>
+<!--toolbar开始-->
+<div class="row base-margin" id="query">
+
+    <form class="form-inline"  style="float: left;"  id="queryForm">
+
+        <div class="form-group">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openDesignPanel(true)"><button type="button" class="btn btn-warning">添加奖品</button></a>
+        </div>
+
+    </form>
+</div>
+<!--toolbar结束-->
+<div class="container" style="width: 100%;">
+    <table id="table">
+    </table>
+</div>
+
+
+<!--表单设计器结束-->
+
+
+</body>
+<script type="text/javascript" src="js/userManager.js"></script>
+</html>

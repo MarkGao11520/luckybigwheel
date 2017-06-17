@@ -1,4 +1,7 @@
-var url = './pageController/getPrizeList'
+var url = './pageController/getPrizeList';
+var prizePic = null;
+var control = $('#file');
+initFileUpload();
 
 $('#table').bootstrapTable({
 	dataType: 'json',
@@ -18,7 +21,8 @@ $('#table').bootstrapTable({
 	pageSize: 7, //每页的记录行数（*）
 	pageList: [7, 10, 15, 20], //可供选择的每页的行数（*）
 	uniqueId: "id", //每一行的唯一标识，一般为主键列
-	//      responseHandler: responseHandler,
+    exportDataType: 'all',
+    //      responseHandler: responseHandler,
 	columns: [{
 			field: '',
 			title: '编号',
@@ -45,7 +49,7 @@ $('#table').bootstrapTable({
 			valign: 'middle',
 			sortable: true,
 			formatter: function(value, row, index) {
-				return '<img  onclick="bigImg(this)" src = "' + row.IMAGE + '" style= "height:50px;width:50px" >点击查看大图</img>'
+				return '<img  onclick="bigImg(this)" src = "' + row.prizePic + '" style= "height:50px;width:50px" >点击查看大图</img>'
 			}
 		}, {
             field: 'isUse',
@@ -78,6 +82,42 @@ $('#table').bootstrapTable({
 		}
 	]
 });
+
+function initFileUpload() {
+    control.fileinput({
+        language:'zh',  //设置语言
+        uploadUrl:'./pageController/uploadPrizeImage',
+//                uploadAsync:false,
+        dropZoneEnabled:true,
+        showCaption:false,   //是否显示标题
+        showPreview:true,
+        showUpload : false,//是否显示上传按钮
+        allowedFileExtensions:['png','jpg'],
+        maxFileCount:10,
+        enctype:'multipart/form-data',
+        browseClass:"btn btn-success"
+    })
+        .on("fileuploaded",function (event,data,c,d) {
+            if((data.response)){
+                if(data.response.isSuccess){
+                    prizePic = data.response.url
+                    // alert("处理成功");
+                }else {
+                    alert("处理失败");
+                }
+            }else{
+                alert("处理失败");
+            }
+
+        })
+        .on("filebatchselected",function (event,files) {
+             $(this).fileinput("upload");
+        })
+        .on("fileerror",function (a,b,c) {
+            alert("失败");
+        });
+}
+
 
 function bigImg(obj) {
 	$('.winright img').attr("src", obj.src);
@@ -118,6 +158,7 @@ function closeDesignPanel() {
 	$('#desginPanel').hide();
 	$('#prizeName').val("");
 	$('#prizeRate').val("");
+	prizePic = null;
 }
 
 function openDesignPanel(isAdd,id,name,rate) {
@@ -154,7 +195,8 @@ function add() {
             url:'./pageController/addPrize',
             data:{
                 prizeName:$('#prizeName').val(),
-                prizeRate:$('#prizeRate').val()
+                prizeRate:$('#prizeRate').val(),
+                prizePic:prizePic
             },
             success:function (result) {
                 if(result.result==1){
@@ -179,7 +221,8 @@ function update(id) {
             data:{
                 id:id,
                 prizeName:$('#prizeName').val(),
-                prizeRate:$('#prizeRate').val()
+                prizeRate:$('#prizeRate').val(),
+                prizePic:prizePic
             },
             success:function (result) {
                 if(result.result==1){

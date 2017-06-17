@@ -4,11 +4,14 @@ import com.zrkj.pojo.Prize;
 import com.zrkj.pojo.User;
 import com.zrkj.service.IPrizeService;
 import com.zrkj.service.IUserService;
+import com.zrkj.tools.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -42,5 +45,10 @@ public class PageController {
     @RequestMapping("updatePrzie")
     public Map<String,Object> updatePrzie(Prize prize){
         return iPrizeService.doUpdatePrize(prize);
+    }
+
+    @RequestMapping("uploadPrizeImage")
+    public Map<String,String> uploadPrizeImage(HttpServletRequest request, MultipartFile prizeImage){
+        return Tools.uploadFile(request,"prize",prizeImage);
     }
 }
