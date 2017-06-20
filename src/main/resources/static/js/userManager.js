@@ -1,5 +1,6 @@
 var url = './pageController/getUserList';
-
+var lists = new Array();
+var i = 0 ;
 $('#table').bootstrapTable({
 	dataType: 'json',
 	cache: false,
@@ -33,14 +34,86 @@ $('#table').bootstrapTable({
 			valign: 'middle',
 			sortable: true
 		}, {
-			field: 'prize',
-			title: '奖品',
+			field: 'nikeName',
+			title: '昵称',
 			align: 'center',
 			valign: 'middle',
 			sortable: true
-		}
+		},{
+            field: 'name',
+            title: '姓名',
+            align: 'center',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'phone',
+            title: '手机号',
+            align: 'center',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'redEnvelope',
+            title: '红包',
+            align: 'center',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'integral',
+            title: '积分',
+            align: 'center',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: '',
+            title: '操作',
+            align: 'center',
+            valign: 'middle',
+            formatter:function (value, row, index) {
+            	var list = row.records;
+				lists[i] = list;
+				return '<a href="javascript:open('+(i++)+')"><button class="btn btn-warning">中奖纪录</button></a>'
+            }
+        }
 	]
 });
+
+function open(j) {
+	 var list = lists[j];
+    var str=""
+    for(var i=0;i<list.length;i++){
+        str += '<tr>' +
+            '<td>'+list[i].recordCode+'</td>' +
+            '<td>'+list[i].prize.prizeName+'</td>' +
+            '<td>'+list[i].crateTime+'</td>' +
+            '<td>'+(list[i].state==0?'<span color="red">未核销</span>':'已核销')+'</td>' +
+            '</tr>'
+    }
+    $('#tbody').html(str);
+    $('#recordList').show();
+}
+
+function close() {
+    $('#recordList').hide();
+}
+
+function doCancelAfterVerification() {
+	$.ajax({
+		type:'get',
+		url:'../pageController/doCancelAfterVerification',
+		data:{
+			"code":$('#code').val()
+		},
+		success:function (result) {
+			if(result.result==1){
+				alert('已核销');
+			}else if(result.result==0){
+				alert('该号码不存在');
+			}else {
+				alert('失败');
+			}
+        }
+	})
+}
 
 
 

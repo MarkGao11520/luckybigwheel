@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>BootStrap Demo</title>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+		<script src="bootstrap/js/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div id="bg" style="position: absolute;background-color: orange;width: 100%;z-index: 0;"></div>
+		<div class="row center-block" style="position: fixed;top: 30%;width: 35%;right: 35%;"> <!--center-block//居中块-->
+			<div class="panel panel-warning"> <!--面板-->
+				<div class="panel-heading">
+					<h3 class="glyphicon glyphicon-bell">幸运大转盘-登录</h3>
+				</div>
+				<div class="panel-body">
+					<form id="form" th:action="@{/login}" method="post">
+					<input name="username" id="username" class="form-control" type="text" placeholder="请输入用户名" required="true"/><br />
+					<input name="password" id="password" class="form-control" type="password"  placeholder="请输入密码" required="true"/><br />
+						<p th:if="${param.error }" align="center">
+							无效的账号和密码
+						</p>
+
+						<p th:if="${param.logout}" align="center">
+							您已注销
+						</p>
+					<div align="right">
+					<a href="javascript:loginSubmit()" style="margin: 0 auto;" class="btn btn-info"><span class="glyphicon glyphicon-adjust">登录</span></a>
+					</div>
+					</form>
+				</div>
+				<div class="panel-footer">
+					<center>
+						<address>©版权所有天津泽瑞科技有限公司-津ICP备16006638号</address>
+					</center>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+<script>
+	function changeBG(){
+		var bodyHight = document.documentElement.clientHeight;
+		document.getElementById("bg").style.height = bodyHight/2+'px';
+	}
+	
+	window.setInterval("changeBG()", 200);
+
+    function loginSubmit() {
+		$('#form').submit();
+    }
+</script>
+</html>

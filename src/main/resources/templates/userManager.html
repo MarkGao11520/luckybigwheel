@@ -12,7 +12,14 @@
     <script type="text/javascript" src="table/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="table/locale/bootstrap-table-zh-CN.min.js"></script>
     <script type="text/javascript" src="table/extensions/export/bootstrap-table-export.min.js"></script>
-
+    <style>
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,9 +28,7 @@
 
     <form class="form-inline"  style="float: left;"  id="queryForm">
 
-        <div class="form-group">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:openDesignPanel(true)"><button type="button" class="btn btn-warning">添加奖品</button></a>
-        </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;  <input class="form-control" id="code" placeholder="请输入中奖纪录码"/> &nbsp;<a href="javascript:doCancelAfterVerification()" > <button type="button" class="btn btn-warning">核销</button></a>
 
     </form>
 </div>
@@ -36,7 +41,31 @@
 
 <!--表单设计器结束-->
 
+<div id="recordList" hidden="hidden"  style="width: 80%;position: absolute;top: 5%;right: 10%;"
+     class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">中奖纪录</h3>
+    </div>
+    <div class="panel-body">
 
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <td>奖品编号</td>
+                <td>奖品名称</td>
+                <td>抽奖时间</td>
+                <td>状态</td>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+
+        <a href="javascript:close()"><button class="btn btn-warning btn-block" style="width: 25%;margin: 0 auto;">关闭
+        </button></a>
+    </div>
+</div>
 </body>
 <script type="text/javascript" src="js/userManager.js"></script>
 </html>

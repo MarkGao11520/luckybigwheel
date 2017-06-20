@@ -40,6 +40,29 @@ function initTable() {
                 align: 'center',
                 valign: 'middle',
                 sortable: true
+            },{
+                field: 'value',
+                title: '值',
+                align: 'center',
+                valign: 'middle',
+                sortable: true
+            },{
+                field: 'type',
+                title: '类型',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                formatter:function(value, row, index) {
+                    if(row.type==0){
+                        return "其他";
+                    }else if(row.type==1){
+                        return "红包";
+                    }else if(row.type==2){
+                        return "积分";
+                    }
+
+                    return '<img  onclick="bigImg(this)" src = "' + row.prizePic + '" style= "height:50px;width:50px" >点击查看大图</img>'
+                }
             }, {
                 field: 'prizeRate',
                 title: '中奖率',
@@ -203,7 +226,13 @@ function check() {
 	}else if(isNaN($('#prizeRate').val())||$('#prizeRate').val()>=1||$('#prizeRate').val()<=0){
 		alert("中奖率必须位0-1之间的数字");
 		return false;
-	}else {
+	}else if($('#value').val()==null||$('#value').val()==""){
+        alert("值不能为空")
+        return false;
+    }else if(isNaN($('#value').val())||$('#value').val()<=0){
+        alert("值必须为大于0的数字");
+        return false;
+    }else {
 		return true;
 	}
 }
@@ -229,6 +258,8 @@ function add() {
                 type:'post',
                 url:'./pageController/addPrize',
                 data:{
+                    type:$('#prizeType').val(),
+                    value:$('#value').val(),
                     prizeName:$('#prizeName').val(),
                     prizeRate:$('#prizeRate').val(),
                     prizePic:prizePic
@@ -261,6 +292,8 @@ function update(id,rate,isUse) {
                 url:'./pageController/updatePrzie',
                 data:{
                     id:id,
+                    type:$('#prizeType').val(),
+                    value:$('#value').val(),
                     prizeName:$('#prizeName').val(),
                     prizeRate:$('#prizeRate').val(),
                     prizePic:prizePic

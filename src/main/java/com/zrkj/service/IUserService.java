@@ -2,6 +2,8 @@ package com.zrkj.service;
 
 import com.zrkj.pojo.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +13,11 @@ import java.util.Map;
 public interface IUserService {
     User obtainUserById(Integer id);
 
-    List<User> obtainUserList();
+    List<User> obtainUserList(HttpSession session);
 
-    Map<String,Object> doCreateUser(User user);
+    Map<String,Object> doCreateUser(HttpServletRequest request);
 
-    Map<String,Object> doUpdatePrize(User user);
+    Map<String,Object> doCreateUser(User user,HttpServletRequest request);
+
+    Map<String,Object> doUpdateUser(User user,HttpSession session);
 }

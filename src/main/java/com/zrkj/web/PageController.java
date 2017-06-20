@@ -1,6 +1,8 @@
 package com.zrkj.web;
 
+import com.alibaba.fastjson.JSON;
 import com.zrkj.pojo.Prize;
+import com.zrkj.pojo.Store;
 import com.zrkj.pojo.User;
 import com.zrkj.service.IPrizeService;
 import com.zrkj.service.IUserService;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +31,8 @@ public class PageController {
     IPrizeService iPrizeService;
 
     @RequestMapping("getUserList")
-    public List<User>  getUserList(){
-        return iUserService.obtainUserList();
+    public List<User>  getUserList(HttpSession session){
+        return iUserService.obtainUserList(session);
     }
 
     @RequestMapping("getPrizeList")
@@ -37,10 +40,6 @@ public class PageController {
         return iPrizeService.obtainPrizeList();
     }
 
-    @RequestMapping("getPrizeListInUse")
-    public Map<String,Object>  getPrizeListInUse(){
-        return iPrizeService.obtainPrizeListInUse();
-    }
 
     @RequestMapping("getUseNum")
     public Map<String,Object> getUseNum(){
@@ -57,13 +56,20 @@ public class PageController {
         return iPrizeService.doUpdatePrize(prize);
     }
 
-    @RequestMapping("updateUser")
-    public Map<String,Object> updateUser(User user){
-        return iUserService.doUpdatePrize(user);
-    }
+
 
     @RequestMapping("uploadPrizeImage")
     public Map<String,String> uploadPrizeImage(HttpServletRequest request, MultipartFile prizeImage){
         return Tools.uploadFile(request,"prize",prizeImage);
+    }
+
+    @RequestMapping("getConStore")
+    public Store getConStore(){
+        return Tools.obtainPrincipal();
+    }
+
+    @RequestMapping("doCancelAfterVerification")
+    public Map<String,Object> doCancelAfterVerification(String code){
+        return iPrizeService.doCancelAfterVerification(code);
     }
 }

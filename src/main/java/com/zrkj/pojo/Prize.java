@@ -9,8 +9,35 @@ public class Prize {
     private String prizeName;
     private Double prizeRate;
     private String prizePic;
+    private Byte type;
+    private Integer storeId;
+    private Integer value;
     private Byte isUse;
 
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
+    }
+
+    public Integer getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
 
     public Byte getIsdel() {
         return isdel;

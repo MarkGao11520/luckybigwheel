@@ -1,5 +1,8 @@
 package com.zrkj.tools;
 
+import com.zrkj.pojo.Store;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,5 +84,15 @@ public class Tools {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Store obtainPrincipal(){
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+        Store store = new Store();
+        if (principal instanceof UserDetails) {
+            store = (Store) principal;
+        }
+        return store;
     }
 }

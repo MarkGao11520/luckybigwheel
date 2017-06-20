@@ -19,14 +19,14 @@ $(document).ready(function(){
 
     $.ajax({
         type:'get',
-        url:'./pageController/getPrizeListInUse',
+        url:'../userController/getPrizeListInUse',
         async:false,
         success:function(result){
             turnplate.restaraunts = result.prizeList;
             turnplate.colors = result.colorList;
             picList = result.picList;
             for(var i =0;i<picList.length;i++){
-                $('#img').append('<img src="'+picList[i]+'" id="img_'+i+'" style="width: 50px;height: 50px;display:none;" />');
+                $('#img').append('<img src="../'+picList[i]+'" id="img_'+i+'" style="width: 50px;height: 50px;display:none;" />');
             }
         },
         error:function (error) {
@@ -66,26 +66,26 @@ $(document).ready(function(){
                     alert(txt);
                 }else{
                     alert("恭喜您中奖了，您的奖品是"+txt);
-                }
-                $.ajax({
-                    type:'get',
-                    url:'./pageController/updateUser',
-                    data:{
-                        id:1,
-                        prize:txt
-                    },
-                    async:false,
-                    success:function(result){
-                        if(result.result==1){
-                            window.location.href="userPrize";
-                        }else {
-                            alert("访问服务器失败");
+                    $.ajax({
+                        type:'get',
+                        url:'../userController/doRecord',
+                        data:{
+                            prize:txt
+                        },
+                        async:false,
+                        success:function(result){
+                            if(result.result==1){
+                                window.location.href="../userController/userPrize";
+                            }else {
+                                alert("访问服务器失败");
+                            }
+                        },
+                        error:function (error) {
+                            alert("访问服务器失败")
                         }
-                    },
-                    error:function (error) {
-                        alert("访问服务器失败")
-                    }
-                })
+                    })
+                }
+
                 turnplate.bRotate = !turnplate.bRotate;
             }
         });

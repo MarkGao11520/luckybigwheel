@@ -1,5 +1,5 @@
 changeNav2('prize',2);
-
+getStore();
 // function changeNav1(id) {
 // 	var str = '';
 // 	for(var i = 1; i <= 3; i++) {
@@ -21,6 +21,19 @@ changeNav2('prize',2);
 // 	}
 // 	$('#nt').html(str);
 // }
+
+function getStore() {
+    $.ajax({
+		type:'get',
+		url:'pageController/getConStore',
+		success:function (result) {
+			$('#storeName').html(result.storeName);
+        },
+		error:function (error) {
+			alert("访问服务器失败");
+        }
+	})
+}
 
 function changeNav2(url, id) {
 	for(var i = 1; i <= 3; i++) {
