@@ -17,7 +17,7 @@ public interface IUserService {
 
     Map<String,Object> doCreateUser(HttpServletRequest request);
 
-    Map<String,Object> doCreateUser(User user,HttpServletRequest request);
+    Map<String,Object> doCreateUser(User user,HttpServletRequest request,Integer qrid);
 
     Map<String,Object> doUpdateUser(User user,HttpSession session);
 }

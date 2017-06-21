@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="table/bootstrap-table.min.css"/>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="table/extensions/export/bootstrap-table-export.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+<!--toolbar开始-->
+<div class="row base-margin" id="query">
+
+    <form class="form-inline" style="float: left;" id="queryForm">
+
+        &nbsp;&nbsp;&nbsp;&nbsp;<input class="form-control" type="number" max="1000" min="1" id="num" placeholder="生成数量"/>
+        <a href="javascript:doCreate()"><button type="button" class="btn btn-warning">生成</button></a>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;<input class="form-control" type="number" id="start" max="1000" min="1" placeholder="开始张数"/>
+        ~<input class="form-control" type="number" id="end" max="1000" min="1" placeholder="结束张数"/>
+        &nbsp;<a href="javascript:doDownLoad()"><button type="button" class="btn btn-warning">下载</button></a>
+
+        &nbsp;<a href="javascript:isF(0)"><button type="button" class="btn btn-warning">全部</button></a>
+        &nbsp;<a href="javascript:isF(1)"><button type="button" class="btn btn-warning">未失效</button></a>
+        &nbsp;<a href="javascript:isF(2)"><button type="button" class="btn btn-warning">已失效</button></a>
+
+    </form>
+</div>
+<!--toolbar结束-->
+<div class="container" style="width: 100%;">
+    <table id="table">
+    </table>
+</div>
+
+</body>
+<script type="text/javascript" src="js/qrManager.js"></script>
+</html>

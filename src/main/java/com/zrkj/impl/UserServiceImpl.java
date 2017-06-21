@@ -1,6 +1,7 @@
 package com.zrkj.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.zrkj.mapper.QrMapper;
 import com.zrkj.mapper.RecordMapper;
 import com.zrkj.mapper.UserMapper;
 import com.zrkj.pojo.Record;
@@ -31,6 +32,8 @@ public class UserServiceImpl implements IUserService {
     UserMapper userMapper;
     @Autowired
     RecordMapper recordMapper;
+    @Autowired
+    QrMapper qrMapper;
 
     @Override
     public User obtainUserById(Integer id) {
@@ -63,6 +66,7 @@ public class UserServiceImpl implements IUserService {
         }
 
         String code = request.getParameter("code");
+        Integer qrid = (Integer.parseInt(request.getParameter("qrid")));
         Integer storeId = request.getParameter("storeId")==null?null:Integer.parseInt(request.getParameter("storeId"));
         if (!"authdeny".equals(code)) {
             WeixinOauth2Token weixinOauth2Token = AdvancedUtil.getOauth2AccessToken("wxbac97923056c9446", "09294bfe0e5177c2e5e50f18ea207075", code);
@@ -73,6 +77,7 @@ public class UserServiceImpl implements IUserService {
             if ((u = userMapper.getUserByOpenId(user.getOpenId())) != null) {
                 map.put("result", 2); //openId已经存在
                 map.put("user", u);
+                qrMapper.doUpdate(qrid);
             } else {
                 if (user.getOpenId() == null)
                     map.put("result", -1); //openId不能为空
@@ -81,6 +86,7 @@ public class UserServiceImpl implements IUserService {
                         user.setStoreId(storeId);
                         map.put("result", userMapper.doCreateUser(user));
                         map.put("user", user);
+                        qrMapper.doUpdate(qrid);
                         HttpSession httpSession = request.getSession();
                         httpSession.setAttribute("uid", user.getId());
                         httpSession.setAttribute("sid", storeId);
@@ -98,7 +104,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Map<String, Object> doCreateUser(User user,HttpServletRequest request) {
+    public Map<String, Object> doCreateUser(User user,HttpServletRequest request,Integer qrid) {
         Map<String, Object> map = new HashMap<String, Object>();
         User u;
         if ((u = userMapper.getUserByOpenId(user.getOpenId())) != null) {
@@ -123,6 +129,8 @@ public class UserServiceImpl implements IUserService {
                 }
             }
         }
+        System.out.println(qrid);
+        System.out.println(qrMapper.doUpdate(qrid));
         return map;
     }
 

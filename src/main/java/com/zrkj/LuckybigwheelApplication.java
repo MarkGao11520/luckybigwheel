@@ -6,6 +6,7 @@ import com.zrkj.mapper.UserMapper;
 import com.zrkj.pojo.Prize;
 import com.zrkj.pojo.User;
 import com.zrkj.service.IPrizeService;
+import com.zrkj.service.IQrService;
 import com.zrkj.service.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

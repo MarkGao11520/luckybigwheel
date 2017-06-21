@@ -1,4 +1,4 @@
-changeNav2('prize',2);
+changeNav2('qr',2);
 getStore();
 // function changeNav1(id) {
 // 	var str = '';

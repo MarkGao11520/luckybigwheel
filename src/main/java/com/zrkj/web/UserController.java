@@ -3,6 +3,7 @@ package com.zrkj.web;
 import com.zrkj.pojo.User;
 import com.zrkj.pojo.WeixinOauth2Token;
 import com.zrkj.service.IPrizeService;
+import com.zrkj.service.IQrService;
 import com.zrkj.service.IUserService;
 import com.zrkj.tools.AdvancedUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class UserController {
     IUserService iUserService;
     @Autowired
     IPrizeService iPrizeService;
+    @Autowired
+    IQrService iQrService;
 
     @RequestMapping("doRecord")
     @ResponseBody
@@ -37,13 +40,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "wheel")
-    public ModelAndView wheel(ModelAndView mv, HttpServletRequest request,User user) throws UnsupportedEncodingException {
-        Map<String,Object> map = iUserService.doCreateUser(user,request);
-        if((int)map.get("result")>0)
-            mv.addObject("user",(User)map.get("User"));
-        else
-            throw new RuntimeException("创建新用户失败,错误码："+(int)map.get("result"));
-        mv.setViewName("wheel");
+    public ModelAndView wheel(ModelAndView mv, HttpServletRequest request,User user,Integer qrid) throws UnsupportedEncodingException {
+        if(!iQrService.doCheckIsFailure(qrid)){
+            Map<String,Object> map = iUserService.doCreateUser(user,request,qrid);
+            if((int)map.get("result")>0)
+                mv.addObject("user",(User)map.get("User"));
+            else
+                throw new RuntimeException("创建新用户失败,错误码："+(int)map.get("result"));
+            mv.setViewName("wheel");
+        }else {
+            mv.setViewName("out");
+        }
         return mv;
     }
 
