@@ -41,6 +41,7 @@ public class UserServiceImpl implements IUserService {
         List<Record> records;
         user.setIntegralRecord((records=recordMapper.getRecordByUidAndType(id,2))==null?Collections.emptyList():records);
         user.setRedEnvelopeRecord((records=recordMapper.getRecordByUidAndType(id,1))==null?Collections.emptyList():records);
+        user.setOtherRecord((records=recordMapper.getRecordByUidAndType(id,0))==null?Collections.emptyList():records);
         return user;
     }
 
@@ -129,8 +130,8 @@ public class UserServiceImpl implements IUserService {
                 }
             }
         }
-        System.out.println(qrid);
-        System.out.println(qrMapper.doUpdate(qrid));
+
+       qrMapper.doUpdate(qrid);
         return map;
     }
 

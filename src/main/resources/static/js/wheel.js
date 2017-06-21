@@ -13,6 +13,7 @@ var turnplate={
 };
 
 var picList;
+var item;
 
 $(document).ready(function(){
     //动态添加大转盘的奖品与奖品区域背景颜色
@@ -24,6 +25,7 @@ $(document).ready(function(){
         success:function(result){
             turnplate.restaraunts = result.prizeList;
             turnplate.colors = result.colorList;
+            item=result.item;
             picList = result.picList;
             for(var i =0;i<picList.length;i++){
                 $('#img').append('<img src="../'+picList[i]+'" id="img_'+i+'" style="width: 50px;height: 50px;display:none;" />');
@@ -95,7 +97,7 @@ $(document).ready(function(){
         if(turnplate.bRotate)return;
         turnplate.bRotate = !turnplate.bRotate;
         //获取随机数(奖品个数范围内)
-        var item = rnd(1,turnplate.restaraunts.length);
+       // var item = rnd(1,turnplate.restaraunts.length);
         //奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
         rotateFn(item, turnplate.restaraunts[item-1]);
         /* switch (item) {

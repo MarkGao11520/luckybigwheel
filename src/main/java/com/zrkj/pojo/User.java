@@ -12,6 +12,7 @@ public class User {
     private Integer redEnvelope;
     private List<Record> redEnvelopeRecord;
     private List<Record> integralRecord;
+    private List<Record> otherRecord;
     private List<Record> records;
     private Integer integral;
     private String name;
@@ -24,6 +25,14 @@ public class User {
     public User() {
         this.integral=0;
         this.redEnvelope=0;
+    }
+
+    public List<Record> getOtherRecord() {
+        return otherRecord;
+    }
+
+    public void setOtherRecord(List<Record> otherRecord) {
+        this.otherRecord = otherRecord;
     }
 
     public List<Record> getRecords() {

@@ -22,5 +22,7 @@ public class LuckybigwheelApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(LuckybigwheelApplication.class, args);
+		IPrizeService iPrizeService = ctx.getBean(IPrizeService.class);
+		System.out.println(iPrizeService.obtainPrizeListInUse(1));
 	}
 }

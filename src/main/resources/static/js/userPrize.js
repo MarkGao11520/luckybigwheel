@@ -3,6 +3,7 @@
  */
 var redList ;
 var intList ;
+var otherList ;
 initData();
 function initData(){
     $.ajax({
@@ -16,6 +17,7 @@ function initData(){
             $('#integral').html(result.integral==null?"":result.integral);
             redList = result.redEnvelopeRecord==null?new Array():result.redEnvelopeRecord;
             intList = result.integralRecord==null?new Array:result.integralRecord;
+            otherList = result.otherRecord==null?new Array:result.otherRecord;
         }
     })
 }
@@ -24,8 +26,10 @@ function open(temp) {
     var list
     if(temp==1)
         list = redList;
-    else
+    else if(temp==2)
         list = intList;
+    else
+        list = otherList;
     var str=""
     for(var i=0;i<list.length;i++){
         str += '<tr>' +
